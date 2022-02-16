@@ -1,29 +1,18 @@
 class Solution {
 public:
-    bool binarysearch(vector<int>& vec, int target) {
-        int l = 0, r = vec.size();
-        while (l <= r)
-        {
-            int mid = (l + r) / 2;
-            if (vec[mid] == target)
-                return true;
-            else if (vec[mid] < target)
-                l = mid + 1;
-            else
-                r = mid - 1;
-        }
-        return false;
-    }
+   
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         if ((matrix.size() == 0) || (matrix[0].size() == 0)) return false;
-        int row = 0;
-        while ((row < matrix.size()) && (matrix[row].back() < target))
-            row++;
-        
-        if (row >= matrix.size()) return false;
-        
-        return binarysearch(matrix[row], target);
-    }
-        
+        int m=matrix.size();
+        int n =matrix[0].size();
+        int low=0,high=n-1,i=0;
+        while(low<=high && i<m){
+            if(matrix[i][n-1]<target) {i++;continue;}
+            int mid=low+(high-low)/2;
+            if(matrix[i][mid]==target) return true;
+            else if(matrix[i][mid]<target) low=mid+1;
+            else high=mid-1;
+        }
+        return false;
     
-};
+}};
