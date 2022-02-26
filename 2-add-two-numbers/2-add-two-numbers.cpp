@@ -15,17 +15,16 @@ public:
         int carry=0;
         ListNode *ans= new ListNode();
         ListNode *dummy=ans;
-        ListNode *d1=l1;
-        ListNode *d2=l2;
-        while(d1 || d2 ||carry==1){
+        
+        while(l1 || l2 ||carry==1){
             int sum=0;
-            if(d1){
-                sum+=d1->val;
-                d1=d1->next;
+            if(l1){
+                sum+=l1->val;
+                l1=l1->next;
             }
-            if(d2){
-                sum+=d2->val;
-                d2=d2->next;
+            if(l2){
+                sum+=l2->val;
+                l2=l2->next;
             }
             sum=sum+carry;
             carry=sum/10;
