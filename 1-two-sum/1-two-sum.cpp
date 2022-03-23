@@ -5,7 +5,7 @@ public:
        unordered_map<int,int> m;
         for(int i=0;i<nums.size();i++){
             int diff=target-nums[i];
-            if(m.find(diff)!=m.end() ){
+            if(m.find(diff)!=m.end()&& m.find(diff)->second!=i){
                 answer.push_back(i);
                 answer.push_back(m.find(diff)->second);
                 return answer;
