@@ -6,9 +6,17 @@ bool comparator ( vector <int> &a, vector <int> &b ){
 class Solution {
 public:   
     int twoCitySchedCost(vector<vector<int>>& costs) {
-        sort(costs.begin(), costs.end(), comparator);
-        int n = costs.size()/2, ans = 0;
-        for( int i = 0 ; i < n ; i++ ) ans += costs[i][0] + costs[i+n][1]; // send the first to a , rest to b
-        return ans;
+        int sum=0;
+        int n=costs.size();
+        vector<int> diff;
+        for(int i=0;i<n;i++){
+            sum+=costs[i][0];
+            diff.push_back(costs[i][1]-costs[i][0]);
+        }
+        sort(diff.begin(),diff.end());
+        for(int i=0;i<n/2;i++){
+            sum+=diff[i];
+        }
+        return sum;
     }
 };
