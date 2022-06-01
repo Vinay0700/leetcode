@@ -14,5 +14,4 @@ public:
         }
         return slow;
     }
-	// for github repository link go to my profile.
 };
