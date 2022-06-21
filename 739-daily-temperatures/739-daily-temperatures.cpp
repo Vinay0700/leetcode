@@ -1,23 +1,26 @@
 class Solution {
+ 
 public:
-    vector<int> dailyTemperatures(vector<int>& temperatures) {
+    vector<int> dailyTemperatures(vector<int>& T) {
+        // use monotonic stack since it is a next greater element problem 
         
-        int n = temperatures.size();
-        vector<int>nge(n, 0); 
-        stack<int>st{};
-        
-		// move from right to left
-        for(int i = n-1; i>=0; --i){
+        stack<pair<int,int> > s;
+        vector<int> ans(T.size());
+        // populate stack 
+        for(int i = T.size()-1;i>=0; i--)
+        {
+            auto curr = T[i];
+            // top element of the stack should be the largest 
+            while(!s.empty() && curr >= s.top().first)
+            {
+                s.pop();
+            }
             
-            while(!st.empty() && temperatures[st.top()] <= temperatures[i])
-                st.pop();
-				
-           
-            if(!st.empty())
-                nge[i] = st.top()-i; 
-            st.push(i);
+            ans[i] = s.empty() ? 0: s.top().second - i; 
+            s.push(pair<int, int>(T[i], i));
         }
-        
-        return nge;
+        // T: O(n)
+        // S: O(n)
+        return ans;
     }
 };
