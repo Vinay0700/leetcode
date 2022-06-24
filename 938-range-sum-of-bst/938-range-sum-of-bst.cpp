@@ -1,18 +1,17 @@
 class Solution {
 public:
     int sumofRange;
-    void dfs(TreeNode* root, int L, int R){
-		//Base case
-        if(!root) return;
-		//If in range add 
-        if(root->val >= L && root->val <= R) sumofRange += root->val;
-        //Digging the depths of the tree
-		if(root->val > L) dfs(root->left,L,R);
-        if(root->val < R) dfs(root->right,L,R);
-    }
     int rangeSumBST(TreeNode* root, int L, int R) {
-        sumofRange = 0;
-        dfs(root,L,R);
+        int sumofRange(0);
+        stack<TreeNode*> stack;
+        stack.push(root);
+        while(!stack.empty()){
+            TreeNode* node = stack.top(); stack.pop();
+            if(node->val>=L && node->val<=R) sumofRange+=node->val;
+            if(node->val > L) {if(node->left) stack.push(node->left);}
+            if(node->val < R) {if(node->right) stack.push(node->right);}
+        }
         return sumofRange;
     }
 };
+    
