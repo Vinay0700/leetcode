@@ -115,10 +115,10 @@ class Solution
     }
     void inorder (Node* s, Node* t){
         if(s!=NULL){
-            inorder(s->left,t);
+            inorder(s->right,t);
             bool x=match(s,t);
             if(x) ans =x;
-            inorder(s->right,t);
+            inorder(s->left,t);
         }
     }
     bool isSubTree(Node* s, Node* t) 
